@@ -26,9 +26,10 @@
                 $tip[0].className = 'tipsy' + this.options.theme; // reset classname in case of dynamic gravity
                 $tip.remove().css({top: 0, left: 0, visibility: 'hidden', display: 'block'}).prependTo(document.body);
 
+                var element = this.$element[0];
                 var pos = $.extend({}, this.$element.offset(), {
-                    width: this.$element[0].offsetWidth || 0,
-                    height: this.$element[0].offsetHeight || 0
+                    width: (this.options.svg ? element.getBBox().width : element.offsetWidth) || 0,
+                    height: (this.options.svg ? element.getBBox().height : element.offsetHeight) || 0
                 });
 
                 var actualWidth = $tip[0].offsetWidth,
@@ -195,6 +196,7 @@
         live: false,
         offset: 0,
         opacity: 0.8,
+        svg: false,
         title: 'title',
         trigger: 'hover',
         theme: ''
